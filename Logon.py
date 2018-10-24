@@ -28,6 +28,8 @@ class Login:
 
         if self.websiteDriver.find_element_by_id("wp-submit"):
             print("The login was unsuccessful with password " + self.password + " and the username " + self.username)
+        else:
+            print("The login was successfull! the password for user: " + self.username + " is: " + self.password)
         self.websiteDriver.save_screenshot('screen.png')
         self.websiteDriver.quit()
 
