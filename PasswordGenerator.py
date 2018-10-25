@@ -1,4 +1,4 @@
-#TODO: Make the generator save the passwords to a file, so that they can be more quickly accessed later
+"""TODO: Make the generator save the passwords to a file, so that they can be more quickly accessed later"""
 
 
 class Test:
@@ -10,7 +10,7 @@ class Test:
         self.printPasswords()
 
     def generatePasswords(self):
-        for current in range(8):
+        for current in range(5):
             self.passwordDictionary = [i for i in self.charList]
             for y in range(current):
                 self.passwordDictionary = [current + i for i in self.charList for current in self.passwordDictionary]
@@ -18,3 +18,5 @@ class Test:
     def printPasswords(self):
         for i in self.passwordDictionary:
             print(i)
+
+Test()
