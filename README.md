@@ -8,10 +8,11 @@ Simply put the driver in the same folder as the scripts, and you are done with t
 
 # Usage:
 1. Put the words you wish into the file "unEncodedWordlist.txt", which is located in the wordlists folder.
-2. Run the "Caesar encoder" script
-3. Change the username in the "BruteForce" script
-4. Change the URL in the "BruteForce" script
-4. Run the "BruteForce" script.
+2. Change the shift to your desired number.
+3. Run the "Caesar encoder" script
+4. Change the username in the "BruteForce" script
+5. Change the URL in the "BruteForce" script
+6. Run the "BruteForce" script.
 
 The script will then have converted the passwords in the "unEncodedWordlist.txt", encode them, and put them in "EncodedWordlist.txt". The brute force script will then use this list as the passwords for the user you defined, and run the script towards the defined URL.
 
