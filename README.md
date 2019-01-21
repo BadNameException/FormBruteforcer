@@ -17,4 +17,4 @@ Simply put the driver in the same folder as the scripts, and you are done with t
 The script will then encode the passwords in the "unEncodedWordlist.txt", and put them in "EncodedWordlist.txt". The brute force script will then use this list as the passwords for the user you defined, and run the script towards the defined URL.
 
 # Disclaimer
-This script is only for educational and ethical purposes, usage in other areas are not endorsed by BadNameException.
+This script is only for educational and ethical purposes, usage in other areas are not endorsed by the developers.
