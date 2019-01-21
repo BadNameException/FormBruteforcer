@@ -12,7 +12,7 @@ Simply put the driver in the same folder as the scripts, and you are done with t
 3. Run the "Caesar encoder" script
 4. Change the username in the "BruteForce" script
 5. Change the URL in the "BruteForce" script
-6. Run the "BruteForce" script.
+6. Run the "BruteForce" script and enjoy!
 
 The script will then encode the passwords in the "unEncodedWordlist.txt", and put them in "EncodedWordlist.txt". The brute force script will then use this list as the passwords for the user you defined, and run the script towards the defined URL.
 
